@@ -6,34 +6,35 @@ import { lightBlue, white } from '../utils/colors';
 import { fetchDecks } from '../actions/decks';
 
 const DeckDetail = ({ index, decks, addCard, quizTime }) => {
-  let deck;
-  if (decks) {
-    deck = decks.filter(d => d.title === index)[0];
-  }
+  let deck = decks.find(d => d.title === index);
 
-  return (
-    <View style={styles.container}>
-      <Card style={styles.cardContainer} title={deck.title}>
-        <Text style={{ marginBottom: 10, textAlign: 'center' }}>
-          {deck.questions.length} cards
-        </Text>
-      </Card>
-      <View style={styles.buttonContainer}>
-        <Button
-          onPress={() => addCard(deck)}
-          style={styles.button}
-          backgroundColor={lightBlue}
-          title="Add Card"
-        />
-        <Button
-          onPress={() => quizTime(deck)}
-          style={styles.button}
-          backgroundColor={lightBlue}
-          title="Start Quiz"
-        />
+  if (deck) {
+    return (
+      <View style={styles.container}>
+        <Card style={styles.cardContainer} title={deck.title}>
+          <Text style={{ marginBottom: 10, textAlign: 'center' }}>
+            {deck.questions.length} cards
+          </Text>
+        </Card>
+        <View style={styles.buttonContainer}>
+          <Button
+            onPress={() => addCard(deck)}
+            style={styles.button}
+            backgroundColor={lightBlue}
+            title="Add Card"
+          />
+          <Button
+            onPress={() => quizTime(deck)}
+            style={styles.button}
+            backgroundColor={lightBlue}
+            title="Start Quiz"
+          />
+        </View>
       </View>
-    </View>
-  );
+    );
+  } else {
+    return null;
+  }
 };
 
 const styles = StyleSheet.create({

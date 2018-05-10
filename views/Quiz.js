@@ -18,10 +18,9 @@ class Quiz extends Component {
     const { deck } = this.props.navigation.state.params;
     const total = deck.questions.length - 1;
     const { index, score } = this.state;
-    console.log('index', index);
-    console.log('total', total);
     if (index >= total) {
       this.setState({
+        score: score + 1,
         lastCard: true,
       });
     } else {
@@ -33,18 +32,29 @@ class Quiz extends Component {
   };
 
   setIncorrect = () => {
-    console.log('setIncorrect');
+    const { deck } = this.props.navigation.state.params;
+    const total = deck.questions.length - 1;
+    const { index } = this.state;
+    if (index >= total) {
+      this.setState({
+        lastCard: true,
+      });
+    } else {
+      this.setState({
+        index: index + 1,
+      });
+    }
   };
 
   render() {
-    const { index, lastCard } = this.state;
-
-    console.log('lastCard', lastCard);
+    const { index, lastCard, score } = this.state;
+    const { deck } = this.props.navigation.state.params;
 
     if (lastCard) {
-      return <ScoreDeck correct={2} incorrect={1} />;
+      const total = deck.questions.length;
+      let incorrect = total - score;
+      return <ScoreDeck correct={score} incorrect={incorrect} total={total} />;
     } else {
-      const { deck } = this.props.navigation.state.params;
       const question = deck.questions[index];
       return (
         <View>

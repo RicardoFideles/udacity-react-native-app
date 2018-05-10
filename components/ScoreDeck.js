@@ -1,14 +1,37 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 
-const ScoreDeck = ({ correct, incorrect }) => {
+const ScoreDeck = ({ correct, incorrect, total }) => {
   return (
-    <View>
-      <Text>Quiz End!</Text>
-      <Text>You got {correct} correct answers and</Text>
-      <Text>{incorrect} incorrect answers</Text>
+    <View style={styles.container}>
+      <Text style={styles.header}>Quiz End!</Text>
+      <View style={styles.scoreContainer}>
+        <Text style={styles.score}>You got {correct} correct answers and</Text>
+        <Text style={styles.score}>{incorrect} incorrect answers</Text>
+        <Text style={styles.score}>of {total} questions</Text>
+      </View>
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    marginLeft: 20,
+    marginRight: 20,
+    marginTop: 12,
+  },
+  scoreContainer: {
+    marginTop: 40,
+  },
+  header: {
+    fontSize: 40,
+    textAlign: 'center',
+  },
+  score: {
+    fontSize: 20,
+    textAlign: 'center',
+  },
+});
 
 export default ScoreDeck;

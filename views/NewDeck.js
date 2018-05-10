@@ -23,9 +23,8 @@ class NewDeck extends Component {
     if (title) {
       const deck = this.createDeck(title);
 
-      this.navigateToDeck(deck);
-
-      this.dispatchDeck(deck);
+      const navigation = this.props.navigation;
+      this.dispatchDeck(deck, navigation);
 
       this.removeError();
     } else {
@@ -33,8 +32,15 @@ class NewDeck extends Component {
     }
   };
 
-  dispatchDeck(deck) {
-    this.props.dispatch(newDeck(deck));
+  dispatchDeck(deck, navigation) {
+    this.props.dispatch(
+      newDeck(deck, function(error, sucess) {
+        navigation.navigate('Deck', {
+          key: deck.title,
+          navTitle: deck.title,
+        });
+      })
+    );
   }
 
   createDeck(title) {
@@ -44,12 +50,7 @@ class NewDeck extends Component {
     };
   }
 
-  navigateToDeck = item => {
-    this.props.navigation.navigate('Deck', {
-      key: item.title,
-      navTitle: item.title,
-    });
-  };
+  navigateToDeck = item => {};
 
   removeError() {
     this.setState({

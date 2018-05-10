@@ -16,7 +16,7 @@ const decks = (state = {}, action) => {
         ...state,
         decks: state.decks.map(d => {
           if (d.title == action.key) {
-            d.questions.push(action.question);
+            d.questions.push(action.newQuestion);
           }
           return d;
         }),

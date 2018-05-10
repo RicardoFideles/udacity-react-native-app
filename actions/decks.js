@@ -25,9 +25,10 @@ function transformData(data) {
   return decks;
 }
 
-export function newDeck(deck) {
+export function newDeck(deck, callback) {
   return dispatch => {
     addDeck(deck.title, deck).then(res => {
+      callback(null, true);
       dispatch({
         type: types.NEW_DECK,
         deck,

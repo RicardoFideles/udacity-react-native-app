@@ -7,8 +7,13 @@ import reducer from './reducers';
 import { MainNavigator } from './navigation_config';
 import UdaciStatusBar from './navigation_config/statusBar';
 import { purple } from './utils/colors';
+import { setLocalNotification } from './utils/helpers';
 
 export default class App extends React.Component {
+  componentDidMount() {
+    setLocalNotification();
+  }
+
   render() {
     return (
       <Provider store={createStore(reducer, {}, applyMiddleware(ReduxThunk))}>
