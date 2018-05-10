@@ -11,13 +11,12 @@ From Udacity Project Details:
 ## Usage
 
 ```
-yarn install
-yarn start
+npm install
+npm start
 ```
 
 ## Tecnologies used in the project
 
 1.  React-Redux
 2.  Redux Thunk
-3.  PropTypes
-4.  React-Native
+3.  React-Native
