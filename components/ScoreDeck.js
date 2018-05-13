@@ -3,7 +3,7 @@ import { View, Text, StyleSheet } from 'react-native';
 import { Button } from 'react-native-elements';
 import { lightBlue } from '../utils/colors';
 
-const ScoreDeck = ({ correct, incorrect, total, restartQuiz }) => {
+const ScoreDeck = ({ correct, incorrect, total, restartQuiz, backToDeck }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.header}>Quiz End!</Text>
@@ -16,7 +16,7 @@ const ScoreDeck = ({ correct, incorrect, total, restartQuiz }) => {
         <Button
           backgroundColor={lightBlue}
           style={styles.button}
-          onPress={restartQuiz}
+          onPress={backToDeck}
           title="Back to Deck"
         />
         <Button
